@@ -1,0 +1,358 @@
+body {
+    background: #3a9c95;
+}
+aside{
+    float: left;
+    background: #09c486;
+    width: 20%;
+    padding: 1.5%;
+    height: 100vh;
+    color: #315a77;
+    border-right: 5px solid #4d4d4d;
+    border-bottom: 5px solid #4d4d4d;
+}
+aside img{
+    width: 40%;
+}
+
+aside.logo{
+
+    margin-left: 4%;
+}
+
+
+aside h3{
+    margin-top: 20%;
+    font-size: 30px;
+    font-family: cursive;
+}
+
+aside ul {list-style: none}
+aside ul li{
+    color: #1a328e;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-family: Bradley Hand, cursive;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover{
+    color: #190004;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+ul{
+    text-decoration: none;
+    list-style: none
+}
+
+main .container{
+    float: left;
+    color: #4d4d4d;
+    margin-top: 2%;
+    text-align: center;
+    width: 75%;
+}
+
+.news {
+    padding-top: 5%;
+}
+
+h1{
+    font-family: URW Chancery L, cursive;
+    color: #20302f;
+}
+
+.hr-double {
+	margin: 29px 0;
+	padding: 0;
+	height: 2px;
+	border: none;
+	border-top: 2px solid #333;
+	border-bottom: 2px solid #333;
+}
+
+h2{
+    font-size: 37px;
+    font-family: Trattatello, fantasy;
+    color: #4ec776;
+}
+
+.alert-info{
+    float: left;
+    clear: both;
+    width: 600px;
+    margin: 20px 23%;
+    text-align: left;
+}
+
+button{
+    color: darkred;
+}
+
+.form{
+    margin-left: 31%;
+    width: 700px;
+    margin-top: 50px;
+}
+
+.custom-btn {
+  width: 50%;
+  height: 40%;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.btn-1 {
+  background: #b621fe;
+  border: none;
+  z-index: 1;
+}
+.btn-1:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background: #663dff;
+  border-radius: 5px;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  transition: all 0.6s ease;
+}
+.btn-1:hover {
+  color: #47de3a;
+}
+.btn-1:hover:after {
+  left: 0;
+  width: 100%;
+}
+.btn-1:active {
+  top: 2px;
+}
+
+.mar{
+    margin-top: 30%;
+    color: red;
+}
+
+.double-border-button {
+  text-decoration: none;
+  background: #3a9c95;
+  display: inline-block;
+  margin: 10px 20px;
+  padding: 10px 30px;
+  position: relative;
+  border: 2px solid #484f18;
+  color: #484f18;
+  font-family: 'Montserrat', sans-serif;
+  transition: .4s;
+}
+.double-border-button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  border: 2px solid rgba(0, 0, 0, 0);
+  transition: .4s;
+}
+.double-border-button:hover:after {
+  border-color: #484f18;
+  width: calc(100% - 10px);
+  height: calc(100% + 10px);
+}
+
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #a82d5a;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.btn-4 {
+  background-color: #f0ecfc;
+    background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-4 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-4:before,
+.btn-4:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-4:before{
+   height: 0%;
+   width: 2px;
+}
+.btn-4:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-4:hover:before {
+  height: 100%;
+}
+.btn-4:hover:after {
+  width: 100%;
+}
+.btn-4:hover{
+  background: #a69edb;
+}
+.btn-4 span:hover{
+  color: #c797eb;
+}
+.btn-4 span:before,
+.btn-4 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.btn-4 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-4 span:after {
+  height: 2px;
+  width: 0%;
+}
+.btn-4 span:hover:before {
+  height: 100%;
+}
+.btn-4 span:hover:after {
+  width: 100%;
+}
+
+.nice{
+    text-align: center;
+    font-family: monospace;
+}
+
+.enter{
+    margin-top: 5%;
+}
+.center{
+    margin-left: 31%;
+}
+.ccenter{
+    margin-left: 27%;
+}
+.cccenter{
+    margin-top: 4%;
+    margin-left: 39%;
+}
+.last_center{
+    margin-top: 1%;
+    margin-left: 37.5%;
+}
+
+.pressed-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 30px;
+  margin: 3px 7px;
+  border-radius: 30px;
+  background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+  background-position: 100% 0;
+  background-size: 200% 200%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: white;
+  box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+  transition: .5s;
+}
+.pressed-button:hover {
+  box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+  background-position: 0 0;
+}
+.marg{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.lefty{
+    text-align: left;
+    margin-left: 10%;
+}
+.llefty{
+    text-align: left;
+    margin-left: 44.9%;
+}
+.paddi{
+    margin-top: 4%;
+    margin-left: 36%;
+    color: #4e147a;
+}
+.padddi{
+    margin-top: 1%;
+    margin-left: 38%;
+    color: #631322;
+}
+.ppaddi{
+    margin-top: 1%;
+    margin-left: 35.2%;
+    color: #4e147a;
+}
+.last_paddi{
+    margin-top: 1%;
+    margin-left: 28.5%;
+    color: #631322;
+}
+.middle{
+    margin-left: 4%;
+}
+.lllefty{
+    text-align: left;
+    margin-left: 45.7%;
+}

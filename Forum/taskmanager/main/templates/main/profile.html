@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2>{% block title %} Ваш профиль {% endblock %}</h2>
+<hr>
+<div class="nice">
+    <h3>Имя пользователя: {{ user.username }}</h3>
+    <h3>Адрес электронной почты: {{ user.email }}</h3>
+</div>
+
+{% else %}
+<h3>Сперва войдите в свой профиль</h3>
+
+{% endif %}
+{% endblock %}

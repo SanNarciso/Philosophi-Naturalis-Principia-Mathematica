@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главненькая страничка
+{% endblock %}
+
+{% block content %}
+    <h1>Главная сраница</h1>
+
+    <hr class="hr-double">
+    {% if news %}
+        <h2>Статьи</h2>
+        {% for el in news %}
+        <div class="=alert alert-info">
+            <h4 align="center"><font size="5" color="#E15044" face="candara">{{ el.title }}</font></h4>
+            <h4 align="center"><font size="3" color="#006400" face="Segoe Script">{{ el.pub_date }}</font></h4>
+            <h4 align="center"><font size="3" color="#A1AB55" face="consolas">{{ el.anons }}</font></h4>
+            <h4><font size="3" color="#62110B" face="helterskelter">{{ el.full_text }}</font></h4>
+            <div class="center">
+                <a href="{% url 'news-detail' el.id %}" class="pressed-button">Читать детальнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h2>Статьи не найдены!</h2>
+    {% endif %}
+
+{% endblock %}

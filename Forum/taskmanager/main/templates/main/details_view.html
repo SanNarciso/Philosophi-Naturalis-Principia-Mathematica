@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="marg" xmlns="http://www.w3.org/1999/html">
+        <h1><font size="6">{{ article.title }}</font></h1>
+        <h3>({{ article.pub_date }})</h3><hr><br>
+        <p align="center"><font size="4" color="#2b2152" face="helterskelter">{{ article.full_text }}</font></p>
+        <div class="enter"></div>
+        <div class="llefty">
+            <p><font color="#283d0c" size="4" face="sans-serif">Комментарии({{ article.comment_article.all.count }})</font></p>
+        </div>
+        <hr>
+    </div>
+
+    {% if messages %}
+        {% for m in messages %}
+            {{ m }}
+        {% endfor %}
+    {% endif %}
+
+
+   <ul id="comment_field">
+        {% if article.comment_article.all %}
+        {% for item in article.comment_article.all %}
+            <li id="comment">
+                <font color="#4b0a73" face="monospace">{{ item.create_date.date }}</font> <br>
+                <font color="#590d12">Пользователь: </font><b><font color="#283d0c" size="4" face="superfrench">{{ item.author }}</font></b><br>
+                <p></p>
+                <div id="comment_text"><font color="#2b0606" face="helvetica" size="3">{{ item.text }}</font></div>
+                <hr>
+            </li>
+        {% endfor %}
+        {% else %}
+            <p>Нет комментариев</p>
+        {% endif %}
+    </ul>
+
+
+    <form action="" id="add_form" method="post" class="lefty">
+        {% csrf_token %}
+        {{ form.text }}
+    </form>
+
+    {% if user.is_authenticated %}
+        <div class="lefty">
+            <button form="add_form" type="submit" class = "pressed-button">Добавить комментарий</button>
+        </div>
+    {% else %}
+<div class="middle"><br><a href="{% url 'login' %}"><font color="#07246b">->Войти в аккаунт<-</font></a></div>
+    {% endif %}
+
+{% endblock %}

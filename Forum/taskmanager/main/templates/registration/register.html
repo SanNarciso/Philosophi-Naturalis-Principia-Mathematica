@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+    <h1 align="center"><font color="#484f18">Регистрация</font></h1>
+     <form action="{% url 'register' %}" method="post">
+     <h5 class="paddi">Ваше имя:{{ form.username  }}</h5><br>
+     <h5 class="padddi">Имэйл:{{ form.email }}</h5><br>
+     <h5 class="ppaddi">Парольчик:{{ form.password1 }}</h5><br>
+     <h5 class="last_paddi">Повторите парольчик:{{ form.password2 }}</h5><br>
+    {% csrf_token %}
+     <p></p>
+     <div align="center">
+        <button type="submit" class="double-border-button">Зарегистрироваться</button>
+     </div>
+    </form>
+</body>
+</html>

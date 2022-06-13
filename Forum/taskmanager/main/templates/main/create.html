@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Форма по добавлению статьи{% endblock %}
+
+{% block content %}
+    <div class="ccenter">
+    <h1>Форма по добавлению статьи</h1>
+    </div>
+     <form method="post" class="form">
+         {% csrf_token %}<br>
+         {{ form.title }}<br>
+         {{ form.anons }}<br>
+         {{ form.full_text }}<br>
+         {{ form.pub_date }}<br>
+         <span>{{ error }}</span>
+         <button class="custom-btn btn-1" type="submit"><font size="4">Добавить</font></button>
+
+     </form>
+
+{% endblock %}
