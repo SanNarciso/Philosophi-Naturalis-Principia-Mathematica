@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<p>Автор: <b>{{ get_article.author }}</b></p>
+    <h4>Вопрос создан: {{ get_article.create_date.date }}</h4><hr>
+    <h1>{{ get_article.title }}</h1>
+
+    <div>
+        <p class="question_txt">{{ get_article.task }}</p>
+    </div>
+
+    <p>Комментарии ({{ get_article.comments_task.all.count }})</p>
+    <hr>
+
+    <p>Добавить комментарий</p>
+
+    {% if messages %}
+        {% for m in messages %}
+            {{ m }}
+        {% endfor %}
+    {% endif %}
+
+    <form action="" id="add_form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+
+    {% if user.is_authenticated %}
+            <button form="add_form" type="submit">Добавить</button>
+        {% else %}
+            <a href="{% url 'login' %}">Чтобы оставить комментарий, необходимо авторизоваться</a>
+    {% endif %}
+
+    <hr>
+
+    <ul id="comments_field">
+
+        {% if get_article.comments_task.all %}
+        {% for item in get_article.comments_task.all|dictsortreversed:'create_date' %}
+            <li id="comments">
+                {{ item.create_date.date }} <br>
+                Пользователь: <b id="author">{{ item.author }}</b><br>
+                <hr>
+                <div id="comment_text"> {{ item.text }} </div>
+            </li>
+        {% endfor %}
+        {% else %}
+            <p>Нет комментариев</p>
+        {% endif %}
+    </ul>
+
+{% endblock %}

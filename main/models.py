@@ -28,3 +28,22 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+
+class Task(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор вопроса', blank=True, null=True)
+    title = models.CharField('Название', max_length=50)
+    task = models.TextField('Описание')
+    create_date = models.DateTimeField(auto_now=True)
+
+    def _str_(self):
+        return self.title
+
+
+class CommentTask(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор комментария', blank=True, null=True)
+    question = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name='Вопрос', blank=True, null=True, related_name='comments_task')
+    text = models.TextField(verbose_name='')
+    create_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.text

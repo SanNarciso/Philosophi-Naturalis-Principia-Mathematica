@@ -271,3 +271,15 @@ a {
 .question_text {
     margin-left: 2%;
 }
+
+
+.question_txt {
+    border: 3px solid rgba(128, 128, 128, 0.5);
+}
+
+#comments {
+    border : 3px solid black;
+    background-color: white;
+    margin-bottom: 1%;
+    list-style-type: none;
+}

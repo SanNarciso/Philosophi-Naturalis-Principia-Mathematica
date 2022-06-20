@@ -5,17 +5,19 @@ from django.http import HttpResponse, StreamingHttpResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, CreateView
 
-from .forms import UserCreationForm, CommentForm, RegisterUserForm
-from .models import Video
+from .forms import UserCreationForm, CommentForm, RegisterUserForm, TaskForm, CommentFormTask
+from .models import Video, Task
 from .get_video import open_file
 
 from django.contrib import messages
 
 
-def index(request):
-    return render(request, 'home.html')
+def task_list(request):
+    tasks = Task.objects.all()
+    context = {'tasks': tasks}
+    return render(request, 'home.html', context)
 
 
 def view_geo(request):
@@ -142,3 +144,49 @@ class Register(View):
         user = authenticate(email=email, password=password, username=username)
         login(request, user)
         return redirect('home')
+
+
+class Create(CreateView):
+    model = Task
+    template_name = 'create_task.html'
+    form_class = TaskForm
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        print(self.request.user)
+        return super().form_valid(form)
+
+
+class DetailTask(FormMixin, DetailView):
+    model = Task
+    template_name = 'task_detail.html'
+    context_object_name = 'get_article'
+    form_class = CommentFormTask
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('detail', kwargs={'pk': self.get_object().id})
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.question = self.get_object()
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
