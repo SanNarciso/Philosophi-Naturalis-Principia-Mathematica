@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <a href="{% url 'video_list' %}" class="go_to_list_a"><h5 class="go_to_list">Вернуться к списку</h5></a>
+
+
+<video
+        class="video_frame"
+        controls
+        preload="auto"
+        width="800"
+        height="450"
+        data-setup="{}">
+    <source src="{% url 'stream' video.id %}" type="video/mp4"/>
+    <source src="{% url 'stream' video.id %}" type="video/webm"/>
+</video>
+
+<br>
+<hr>
+<div class="description">
+    <h3>Описание</h3>
+{{ video.description }}
+</div>
+<hr>
+
+<p>Комментарии ({{ video.comments_video.all.count }})</p>
+    <hr>
+
+<form action="" id="add_form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+</form>
+
+{% if user.is_authenticated %}
+            <button form="add_form" type="submit">Добавить</button>
+        {% else %}
+            <a href="{% url 'login' %}" id="comment_rule">Чтобы оставить комментарий, необходимо авторизоваться</a>
+{% endif %}
+
+
+<hr>
+
+    <ul>
+        {% if video.comments_video.all %}
+        {% for item in video.comments_video.all|dictsortreversed:'create_date' %}
+            <li id="comments">
+                <div id="comment_text">{{ item.create_date }} </div>
+                <div id="author_title">Пользователь: <b id="author">{{ item.author }}</b></div>
+                <hr>
+                <div id="comment_text"> {{ item.text }} </div>
+            </li>
+        {% endfor %}
+        {% else %}
+            <p>Нет комментариев</p>
+        {% endif %}
+    </ul>
+
+<hr>
+
+
+{% endblock %}

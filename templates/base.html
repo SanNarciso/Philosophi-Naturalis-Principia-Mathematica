@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+    <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <link rel="shortcut icon" href="{% static 'img/sigma.png' %}" type="image/svg">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<hr>
+
+<div class="header">
+    <div class="logo_img_frame"><a href="{% url 'home' %}"><img src="{% static 'img/sigma2.png'%} " alt="" class="logo_img"></a></div>
+    <div class="title_frame"><a class="header_text" href="/"><b class="site_name">FIND-ANSWER.RU</b></a></div>
+    <div class="menu">
+        <button class="btn-header"><a class="header_hrefs" href="{% url 'home' %}"><font face="candara">Главная страница</font></a></button>
+        <button class="btn-header"><a class="header_hrefs" href="{% url 'video_list' %}"><font face="candara">Видео-решения</font></a></button>
+        <button class="btn-header"><a class="header_hrefs" href="#"><font face="candara">Профиль</font></a></button>
+        <button class="btn-header"><a class="header_hrefs" href="{% url 'geogebra' %}"><font face="candara">geogebra</font></a></button>
+
+        {% if user.is_authenticated %}
+            <button class="btn-header"> ><a class="header_hrefs" href="{% url 'logout' %}">Logout</a></button>
+        {% else %}
+            <button class="btn-header_log_reg"><a class="header_hrefs" href="{% url 'login' %}">Login</a></button> <button class="btn-header"><a class="header_hrefs" href="{% url 'register' %}">Register</a></button>
+        {% endif %}
+
+        <b class="user">User : {{ user }}</b>
+    </div>
+</div>
+<hr>
+            {% block content %}
+            {% endblock %}
+
+</body>
+
+
+</html>

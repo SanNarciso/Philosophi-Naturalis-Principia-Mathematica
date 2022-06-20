@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 align="center"><font color="#484f18">Регистрация</font></h1>
+     <form action="{% url 'register' %}" method="post">
+     <h5 class="paddi">Ваше имя:{{ form.username  }}</h5><br>
+     <h5 class="padddi">Имэйл:{{ form.email }}</h5><br>
+     <h5 class="ppaddi">Парольчик:{{ form.password1 }}</h5><br>
+     <h5 class="last_paddi">Повторите парольчик:{{ form.password2 }}</h5><br>
+    {% csrf_token %}
+     <p></p>
+     <div align="center">
+        <button type="submit" class="double-border-button">Зарегистрироваться</button>
+     </div>
+    </form>
+
+{% endblock %}
