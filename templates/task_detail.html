@@ -38,7 +38,7 @@
         {% if get_article.comments_task.all %}
         {% for item in get_article.comments_task.all|dictsortreversed:'create_date' %}
             <li id="comments">
-                {{ item.create_date.date }} <br>
+                {{ item.create_date }} <br>
                 Пользователь: <b id="author">{{ item.author }}</b><br>
                 <hr>
                 <div id="comment_text"><script>
