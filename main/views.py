@@ -168,6 +168,7 @@ class Create(CreateView):
 
 
 class DetailTask(FormMixin, DetailView):
+    
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'get_article'
@@ -189,4 +190,3 @@ class DetailTask(FormMixin, DetailView):
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)
-

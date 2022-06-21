@@ -9,7 +9,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="{% static 'img/sigma.png' %}" type="image/svg">
+    <script>
+    function convert() {
+      var input = document.getElementById("input").value.trim();
+      var button = document.getElementById("add comment");
+      
+      
+      button.disabled = display.disabled = true;
+      output = document.getElementById('comments');
+      output.innerHTML = '';
+
+
+      MathJax.texReset();
+      var options = MathJax.getMetricsFor(output);
+      options.display = display.checked;
+      MathJax.tex2chtmlPromise(input, options).then(function (node) {
+      
+        output.appendChild(node);
+        MathJax.startup.document.clear();
+        MathJax.startup.document.updateDocument();
+      }).catch(function (err) {
+      
+        output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+      }).then(function () {
+      
+        button.disabled = display.disabled = false;
+      });
+    }
+    </script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>

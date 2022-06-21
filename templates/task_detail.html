@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-
 <p>Автор: <b>{{ get_article.author }}</b></p>
     <h4>Вопрос создан: {{ get_article.create_date.date }}</h4><hr>
     <h1>{{ get_article.title }}</h1>
@@ -24,11 +22,11 @@
 
     <form action="" id="add_form" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{form.as_p}}
     </form>
 
     {% if user.is_authenticated %}
-            <button form="add_form" type="submit">Добавить</button>
+            <button id="add comment" form="add_form" type="submit">Добавить</button>
         {% else %}
             <a href="{% url 'login' %}">Чтобы оставить комментарий, необходимо авторизоваться</a>
     {% endif %}
@@ -43,12 +41,15 @@
                 {{ item.create_date.date }} <br>
                 Пользователь: <b id="author">{{ item.author }}</b><br>
                 <hr>
-                <div id="comment_text"> {{ item.text }} </div>
+                <div id="comment_text"><script>
+                    convert();
+                </script>
+                {{item.text}}
+            </div>
             </li>
         {% endfor %}
         {% else %}
             <p>Нет комментариев</p>
         {% endif %}
     </ul>
-
 {% endblock %}

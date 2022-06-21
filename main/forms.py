@@ -20,7 +20,7 @@ class CommentForm(ModelForm):
         widgets = {
             'text': Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите текст комментария',
+                'placeholder': 'Введите текст комментария, математические блоки вводятся в $$<your expressions>$$',
                 'rows': 2,
             }),
         }
@@ -70,7 +70,7 @@ class CommentFormTask(ModelForm):
         widgets = {
             'text': Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите текст комментария',
+                'placeholder': 'Введите текст комментария, математические блоки вводятся в $$<your expressions>$$',
                 'rows': 2,
             }),
         }
