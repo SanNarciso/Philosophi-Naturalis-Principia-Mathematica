@@ -5,7 +5,10 @@ from django.forms import Textarea
 
 
 class User(AbstractUser):
-    pass
+    username = models.CharField(max_length=35, unique=True)
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
 
 class Video(models.Model):

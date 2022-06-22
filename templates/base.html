@@ -57,9 +57,9 @@
         <button class="btn-header"><a class="header_hrefs" href="{% url 'geogebra' %}"><font face="candara">geogebra</font></a></button>
 
         {% if user.is_authenticated %}
-            <button class="btn-header"> ><a class="header_hrefs" href="{% url 'logout' %}">Logout</a></button>
+            <button class="btn-header"> <a class="header_hrefs" href="{% url 'logout' %}">Logout</a></button>
         {% else %}
-            <button class="btn-header_log_reg"><a class="header_hrefs" href="{% url 'login' %}">Login</a></button> <button class="btn-header"><a class="header_hrefs" href="{% url 'register' %}">Register</a></button>
+            <button class="btn-header_log_reg"><a class="header_hrefs" href="{% url 'login' %}">Login</a></button> <button class="btn-header"><a class="header_hrefs" href="{% url 'signup' %}">Register</a></button>
         {% endif %}
 
         <b class="user">User : {{ user }}</b>

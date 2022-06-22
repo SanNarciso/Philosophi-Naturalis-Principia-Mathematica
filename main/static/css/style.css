@@ -314,3 +314,13 @@ a {
   width: calc(100% - 10px);
   height: calc(100% + 10px);
 }
+.last_paddi1{
+    margin-top: 5%;
+    margin-left: -5.1%;
+    color: #095408;
+}
+.last_paddi2{
+    margin-top: 1%;
+    margin-left: -6.2%;
+    color: #095408;
+}
