@@ -1,5 +1,6 @@
+
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, StreamingHttpResponse
 from django.urls import reverse_lazy
@@ -7,66 +8,36 @@ from django.views import View
 from django.views.generic import DetailView
 from django.views.generic.edit import FormMixin, CreateView
 
-from .forms import UserCreationForm, CommentForm, RegisterUserForm, TaskForm, CommentFormTask
+from .forms import UserCreationForm, CommentForm, TaskForm, CommentFormTask, AuthenticationForm
 from .models import Video, Task
 from .get_video import open_file
+
+
+from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.views import LoginView
+from django.core.exceptions import ValidationError
+from django.utils.http import urlsafe_base64_decode
+from django.views import View
+from django.shortcuts import render, redirect
+from django.contrib.auth.tokens import default_token_generator as \
+    token_generator
 
 from django.contrib import messages
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from .token import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            # save form in the memory not in database
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            # to get the domain of the current site
-            current_site = get_current_site(request)
-            mail_subject = 'Activation link has been sent to your email id'
-            message = render_to_string('registration/acc_active_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
-            })
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                        mail_subject, message, to=[to_email]
-            )
-            email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
-    else:
-        form = SignupForm()
-    return render(request, 'registration/signup.html', {'form': form})
+from .utils import send_email_for_verify
 
 
-def activate(request, uidb64, token):
-    User = get_user_model()
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-    else:
-        return HttpResponse('Activation link is invalid!')
+User = get_user_model()
 
 
 def task_list(request):
@@ -77,35 +48,6 @@ def task_list(request):
 
 def view_geo(request):
     return render(request, 'geogebra/geogebra.html')
-
-
-def s_up(request):
-    return render(request, 'registration/signup.html')
-
-
-class Register1(View):
-    template_name = 'registration/register.html'
-
-    def get(self, request):
-        context = {
-            'form': UserCreationForm()
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request):
-        form = UserCreationForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('home')
-        context = {
-            'form': form
-        }
-        return render(request, self.template_name, context)
 
 
 def video_list(request):
@@ -182,29 +124,6 @@ class video_detail(FormMixin, DetailView):
         return super().form_valid(form)
 
 
-class Register(View):
-    form_class = RegisterUserForm
-    template_name = 'registration/register.html'
-
-    def get(self, request):
-        context = dict(form=RegisterUserForm())
-        return render(request, self.template_name, context)
-
-    def post(self, request):
-        form = RegisterUserForm(request.POST)
-
-        if not form.is_valid():
-            return render(request, self.template_name, dict(form=form))
-
-        form.save()
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(email=email, password=password, username=username)
-        login(request, user)
-        return redirect('home')
-
-
 class Create(CreateView):
     model = Task
     template_name = 'create_task.html'
@@ -249,3 +168,56 @@ class DetailTask(FormMixin, DetailView):
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)
+
+
+class MyLoginView(LoginView):
+    form_class = AuthenticationForm
+
+
+class EmailVerify(View):
+    def get(self, request, uidb64, token):
+        user = self.get_user(uidb64)
+
+        if user is not None and token_generator.check_token(user, token):
+            user.email_verify = True
+            user.save()
+            login(request, user)
+            return redirect('home')
+        return redirect('invalid_verify')
+
+    @staticmethod
+    def get_user(uidb64):
+        try:
+            # urlsafe_base64_decode() decodes to bytestring
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError,
+                User.DoesNotExist, ValidationError):
+            user = None
+        return user
+
+
+class Register(View):
+    template_name = 'registration/register.html'
+
+    def get(self, request):
+        context = {
+            'form': UserCreationForm()
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=password)
+            send_email_for_verify(request, user)
+            return redirect('confirm_email')
+        context = {
+            'form': form
+        }
+        return render(request, self.template_name, context)
+

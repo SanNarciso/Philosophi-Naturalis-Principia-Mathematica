@@ -11,7 +11,7 @@ def ranged(
         end: int = None,
         block_size: int = 8192,
 ) -> Generator[bytes, None, None]:
-    consumed = 0             # Начальная точка
+    consumed = 0
 
     file.seek(start)
     while True:

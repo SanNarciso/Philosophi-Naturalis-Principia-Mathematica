@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
-
-    <h1 align="center"><font color="#660808">Вход на сайт</font></h1>
+    <h1>Login</h1>
+    <hr>
 
     {% if form.errors %}
         <p>{{ form.errors.error }}</p>
     {% endif %}
 
     <form action="{% url 'login' %}" method="post">
-    <h3 class="last_paddi1"><font color="#095408">Логин: {{ form.username }}</font></h3><br>
-    <h3 class="last_paddi2"><font color="#261054">Пароль: {{ form.password }}</font></h3><br>
+        {{ form }}
+
+
+
     {% csrf_token %}
-    <p></p>
-    <div align="center">
-        <button class="double-border-button" type="submit">Войти</button>
-    </div>
+    <button type="submit" class="btn btn-success">submit</button>
     </form>
 
 {% endblock %}

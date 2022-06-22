@@ -2,13 +2,22 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.forms import Textarea
+from django.utils.translation import gettext_lazy as _
+
+
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
-    username = models.CharField(max_length=35, unique=True)
+    email = models.EmailField(
+        _('email address'),
+        unique=True,
+    )
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    email_verify = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
 
 class Video(models.Model):
