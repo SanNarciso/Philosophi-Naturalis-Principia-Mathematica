@@ -10,7 +10,7 @@
         {% if user.is_authenticated %}
             <a href="{% url 'home' %}"><button type="submit">Создать</button></a>
         {% else %}
-            <a href="{% url 'login' %}">Чтобы задать вопрос, необходимо авторизоваться</a>
+            <a class="reg_to_comment" href="{% url 'login' %}">Чтобы задать вопрос, необходимо авторизоваться</a>
     {% endif %}
         <span>{{ error }}</span>
     </form>

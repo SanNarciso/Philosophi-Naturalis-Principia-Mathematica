@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
-
-    <a href="{% url 'video_list' %}" class="go_to_list_a"><h5 class="go_to_list">Вернуться к списку</h5></a>
 
 {% if messages  %}
     {% for message in messages %}
@@ -24,6 +22,7 @@
 
         <label for="file_video" class="btn_video">Выберете видео</label>
         <input type="file" name="file" id="file_video" style="visibility:hidden;">
+
 
         <label for="file_image" class="btn_img">Выберете значок</label>
         <input type="file" name="image" id="file_image" style="visibility:hidden;">

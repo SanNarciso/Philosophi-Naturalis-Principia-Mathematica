@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
@@ -35,6 +34,8 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
 from .utils import send_email_for_verify
+
+from .models import Video
 
 
 User = get_user_model()

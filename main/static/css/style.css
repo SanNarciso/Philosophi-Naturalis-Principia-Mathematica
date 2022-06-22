@@ -1,6 +1,6 @@
 
 body {
-    background-color: #FFFFD6;
+    background-color: rgb(124, 170, 255);
     max-width: 1050px;
     margin: auto;
 }
@@ -25,16 +25,32 @@ body {
     border-radius: 5px;
 }
 
+
 .btn-header:hover{
     background-color: #330085;
     border-color :  #8ab6ef;
 }
 
+
+.btn-header_logout {
+    background-color: #0d176e;
+    border-color : #0d176e;
+    border-radius: 5px;
+    margin-left: 5.5%;
+}
+
+
+.btn-header_logout:hover {
+    background-color: #330085;
+    border-color :  #8ab6ef;
+}
+
+
 .btn-header_log_reg {
     background-color: #0d176e;
     border-color : #0d176e;
     border-radius: 5px;
-    margin-left: 10%;
+    margin-left: 5.5%;
 }
 
 .btn-header_log_reg:hover {
@@ -51,7 +67,7 @@ body {
 
 .header_text {
     text-decoration: none;
-    color: #ff7fb4;
+    color: #0c0cde;
 }
 
 .header {
@@ -61,7 +77,7 @@ body {
 
 .user {
     margin-left: 1%;
-    color: aquamarine;
+    color: #871a1a;
     border: 3px solid #330085;
 }
 
@@ -73,6 +89,8 @@ body {
     color: #330085;
 }
 
+
+
 #ggb-element{
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +98,7 @@ body {
 }
 
 .Vimage {
-    border: 1px solid #ddd;
+    border: 1px solid #0D176E;
     border-radius: 4px;
     padding: 5px;
     width: 300px;
@@ -91,12 +109,14 @@ body {
     height: 275px;
     text-align: center;
     float: left;
-    border: 2px solid gray;
+    border: 4px solid #0D176E;
     margin:1%;
+    margin-top: 2.5%;
+    background-color: #dbd9d9;
 }
 
 .image_frame:hover {
-    border: 2px solid deepskyblue;
+    border: 5px solid aquamarine;
 }
 
 
@@ -113,7 +133,7 @@ body {
 .upload_form {
     margin-top: 2%;
     margin-left: 2%;
-    background-color: #FFFFD6;
+    background-color: rgb(124, 170, 255);
 }
 
 h1 {
@@ -138,38 +158,44 @@ a {
 }
 
 .btn_video {
-    margin-left: 7%;
-    outline: 1px solid rgb(128, 128, 128);
-    background-color: rgba(0, 191, 255, 0.25);
+    background-color: #0d176e;
+    border-radius: 5px;
+    color:aquamarine;
+    border: 4px solid black;
 }
 
 .btn_video:hover {
-    background-color: rgba(0, 191, 255, 0.55);
+    background-color: rgba(51, 0, 133, 0.49);
 }
 
 
 .btn_img {
-    outline: 1px solid rgb(128, 128, 128);
-    background-color: rgba(0, 191, 255, 0.25);
+    background-color: #0d176e;
+    border-radius: 5px;
+    color:aquamarine;
+    border: 4px solid black;
 }
 
 .btn_img:hover {
-    background-color: rgba(0, 191, 255, 0.55);
+    background-color: rgba(51, 0, 133, 0.49);
 }
 
 .btn_upload {
-    outline: 1px solid rgb(128, 128, 128);
-    background-color: rgba(227, 1, 1, 0.35);
+    background-color: rgb(250, 9, 9);
+    border-radius: 5px;
+    color:aquamarine;
+    border: 4px solid black;
 }
 
 
 .btn_upload:hover {
-    background-color: rgba(227, 1, 1, 0.8);
+    background-color: rgba(250, 9, 9, 0.75);
 }
 
 .video_frame {
     outline: 5px solid deepskyblue;
     margin-left: 11%;
+    margin-top: 2%;
 }
 
 .video_date {
@@ -186,9 +212,12 @@ a {
 }
 
 .go_to_list {
-    color: deepskyblue;
-    font-weight: bold;
-    margin-left: 2.5%;
+    width: 55px;
+    margin-left: 2%;
+}
+
+.go_to_list:hover {
+    color: aquamarine;
 }
 
 .go_to_list_a {
@@ -197,9 +226,6 @@ a {
     text-align: left;
 }
 
-.go_to_list:hover {
-    color: rgba(0, 191, 255, 0.4);
-}
 
 
 #comments {
@@ -323,4 +349,26 @@ a {
     margin-top: 1%;
     margin-left: -6.2%;
     color: #095408;
+}
+
+.title {
+    color: black;
+}
+
+.title_video_create{
+    color: black;
+}
+
+.reg_to_comment{
+    color: #901c1c;
+    font-weight: bold;
+}
+
+.reg_to_comment:hover{
+    color:black;
+}
+
+
+.log {
+    color:black;
 }
