@@ -147,7 +147,6 @@ class Create(CreateView):
 
 
 class DetailTask(FormMixin, DetailView):
-    
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'get_article'
