@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '.ngrok.io']
 
+
 AUTH_USER_MODEL = 'main.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -39,8 +40,8 @@ MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = "jnpw27@mail.ru"
-EMAIL_HOST_PASSWORD = "8RIBICtPttFJNb3d2Oeg"
+EMAIL_HOST_USER = "find-answer.ru@mail.ru"
+EMAIL_HOST_PASSWORD = "Ofew1MEwVFgwqYeTfWAN"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
@@ -99,6 +100,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'psqldb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Maxsim0506',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
