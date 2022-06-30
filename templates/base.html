@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="shortcut icon" href="{% static 'img/sigma.png' %}" type="image/svg">
+    <link rel="shortcut icon" href="{% static 'img/sigma.png' %}" type="image/png">
     <script>
     function convert() {
       var input = document.getElementById("input").value.trim();
@@ -52,7 +52,7 @@
     <div class="menu">
         <button class="btn-header"><a class="header_hrefs" href="{% url 'home' %}"><font face="candara">Главная страница</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="{% url 'create_task' %}"><font face="candara">Задать вопрос</font></a></button>
-        <button class="btn-header"><a class="header_hrefs" href="{% url 'video_list' %}"><font face="candara">Видео-решения</font></a></button>
+        <button class="btn-header"><a class="header_hrefs" href="{% url 'video_list' %}"><font face="candara">Список Задач</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="#"><font face="candara">Профиль</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="{% url 'geogebra' %}"><font face="candara">geogebra</font></a></button>
 

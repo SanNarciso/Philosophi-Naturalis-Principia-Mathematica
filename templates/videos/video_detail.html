@@ -4,22 +4,16 @@
 
 {% block content %}
 
-<video
-        class="video_frame"
-        controls
-        preload="auto"
-        width="800"
-        height="450"
-        data-setup="{}">
-    <source src="{% url 'stream' video.id %}" type="video/mp4"/>
-    <source src="{% url 'stream' video.id %}" type="video/webm"/>
-</video>
+<div class="problemPNGFrame">
+    <img src="{{ video.file.url }}" alt="" class="problemPNG">
+</div>
 
 <br>
 <hr>
 <div class="description">
-    <h3>Описание</h3>
-{{ video.description }}
+    <h3 id="description_video">Описание</h3>
+<div id="comments">
+    <div id="comment_text">{{ video.description }}</div>
 </div>
 <hr>
 

@@ -73,32 +73,31 @@ def create_video(request):
         else:
             title2 = ''
         description2 = request.POST["description"]
+
         file_format_check = str(file2).split('.')[-1].strip()
+        image_format_check = str(image2).split('.')[-1].strip()
 
         if title2 == '':
-            messages.error(request, 'Invalid title')
+            messages.error(request, 'Некорректный заголовок')
         elif file2 == ' ':
-            messages.error(request, 'Invalid video file')
+            messages.error(request, 'Некорректный файл изображения')
         elif image2 == ' ':
-            messages.error(request, 'Invalid image file')
-        elif file_format_check != "mp4":
-            messages.error(request, 'Invalid video format. Choose mp4')
+            messages.error(request, 'Некорректный файл изображения для значка')
+        elif file_format_check != "png"\
+                and file_format_check != "jpg" \
+                and file_format_check != "bmp" \
+                and file_format_check != "jpeg":
+            messages.error(request, 'Некорректный формат изображения задачи (png, jpg, jpeg, bmp)')
+        elif image_format_check != "png"\
+                and image_format_check != "jpg"\
+                and image_format_check != "bmp"\
+                and image_format_check != "jpeg":
+            messages.error(request, 'Некорректный формат изображения значок (png, jpg, jpeg, bmp)')
         else:
             document = Video.objects.create(file=file2, image=image2, title=title2, description=description2)
             document.save()
             return redirect('video_list')
     return render(request, 'videos/create_video.html')
-
-
-def get_streaming_video(request, pk: int):
-    file, status_code, content_size, full_range = open_file(request, pk)
-    response = StreamingHttpResponse(file, status=status_code, content_type='video_storage/mp4')
-
-    response['Accept-Ranges'] = 'bytes'
-    response['Content-Length'] = str(content_size)
-    response['Cache-Control'] = 'no-cache'
-    response['Content-Range'] = full_range
-    return response
 
 
 class video_detail(FormMixin, DetailView):

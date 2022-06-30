@@ -3,10 +3,10 @@
 {% block content %}
 <p>Автор: <b>{{ get_article.author }}</b></p>
     <h4>Вопрос создан: {{ get_article.create_date.date }}</h4><hr>
-    <h1>{{ get_article.title }}</h1>
+    <h1 id="task_title">{{ get_article.title }}</h1>
 
-    <div>
-        <p class="question_txt">{{ get_article.task }}</p>
+    <div id="comments">
+        <div id="comment_text">{{ get_article.task }}</div>
     </div>
 
     <p>Комментарии ({{ get_article.comments_task.all.count }})</p>

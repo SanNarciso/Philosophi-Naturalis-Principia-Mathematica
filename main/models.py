@@ -23,10 +23,7 @@ class User(AbstractUser):
 class Video(models.Model):
     title = models.CharField(max_length=100, default='')
     description = models.TextField(default='')
-    file = models.FileField(
-        default='',
-        validators=[FileExtensionValidator(allowed_extensions=['mp4'])]
-    )
+    file = models.ImageField(default='')
     image = models.ImageField(default='')
 
     create_date = models.DateTimeField(auto_now_add=True)

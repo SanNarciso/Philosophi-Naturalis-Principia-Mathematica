@@ -9,7 +9,6 @@ urlpatterns = [
     path('login/', views.MyLoginView.as_view(), name='login'),
     path('', views.task_list, name='home'),
     path('geogebra', views.view_geo, name='geogebra'),
-    path('stream/<int:pk>/', views.get_streaming_video, name='stream'),
     path('video_list', views.video_list, name="video_list"),
     path('video/<int:pk>', views.video_detail.as_view(), name="video_detail"),
     path('create/video', views.create_video, name="create_video"),
@@ -21,4 +20,4 @@ urlpatterns = [
     path('verify_email/<uidb64>/<token>/', views.EmailVerify.as_view(), name='verify_email'),
     path('invalid_verify/', TemplateView.as_view(template_name='registration/invalid_verify.html'), name='invalid_verify'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

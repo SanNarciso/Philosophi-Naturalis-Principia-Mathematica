@@ -1,7 +1,8 @@
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import IO, Generator
 from django.shortcuts import get_object_or_404
 
+from PNPM import settings
 from .models import Video
 
 
@@ -35,6 +36,7 @@ def open_file(request, video_id):
     video = get_object_or_404(Video, pk=video_id)
 
     path = Path(video.file.path)
+
     file = path.open('rb')
 
     file_size = path.stat().st_size      # Полный размер файла
