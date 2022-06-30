@@ -396,3 +396,22 @@ a {
 .log {
     color:black;
 }
+
+#prof_first{
+    color: black;
+    text-align: center;
+    font-family: cursive;
+
+}
+
+#prof_second{
+    color: #5F11C1;
+    font-family: monospace;
+    font-size: 19px;
+}
+
+#prof_third{
+    color: #00008b;
+    font-family: monospace;
+    font-size: 16px;
+}

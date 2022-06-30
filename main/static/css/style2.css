@@ -274,7 +274,7 @@ a {
 
 .paddi{
     margin-top: 3%;
-    margin-left: 34%;
+    margin-left: 33.7%;
     color: #4e147a;
 }
 .padddi{
@@ -284,12 +284,12 @@ a {
 }
 .ppaddi{
     margin-top: -1%;
-    margin-left: 33.3%;
+    margin-left: 35.4%;
     color: #4e147a;
 }
 .last_paddi{
     margin-top: -1%;
-    margin-left: 28.5%;
+    margin-left: 28%;
     color: #631322;
 }
 
@@ -400,4 +400,23 @@ a {
 
 .log {
     color:black;
+}
+
+#prof_first{
+    color: black;
+    text-align: center;
+    font-family: cursive;
+
+}
+
+#prof_second{
+    color: #5F11C1;
+    font-family: monospace;
+    font-size: 19px;
+}
+
+#prof_third{
+    color: #00008b;
+    font-family: monospace;
+    font-size: 16px;
 }

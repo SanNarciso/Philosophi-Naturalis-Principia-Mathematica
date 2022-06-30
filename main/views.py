@@ -51,6 +51,10 @@ def view_geo(request):
     return render(request, 'geogebra/geogebra.html')
 
 
+def view_profile(request):
+    return render(request, 'profile.html')
+
+
 def video_list(request):
     videos = Video.objects.all().order_by('-id')
     context = {'videos': videos}

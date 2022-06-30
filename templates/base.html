@@ -53,7 +53,7 @@
         <button class="btn-header"><a class="header_hrefs" href="{% url 'home' %}"><font face="candara">Главная страница</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="{% url 'create_task' %}"><font face="candara">Задать вопрос</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="{% url 'video_list' %}"><font face="candara">Список Задач</font></a></button>
-        <button class="btn-header"><a class="header_hrefs" href="#"><font face="candara">Профиль</font></a></button>
+        <button class="btn-header"><a class="header_hrefs" href="{% url 'profile' %}"><font face="candara">Профиль</font></a></button>
         <button class="btn-header"><a class="header_hrefs" href="{% url 'geogebra' %}"><font face="candara">geogebra</font></a></button>
 
         {% if user.is_authenticated %}
