@@ -26,7 +26,7 @@
     </form>
 
     {% if user.is_authenticated %}
-            <button id="add comment" form="add_form" type="submit">Добавить</button>
+            <button id="add comment" form="add_form" type="submit" class="button">Добавить</button>
         {% else %}
             <a href="{% url 'login' %}">Чтобы оставить комментарий, необходимо авторизоваться</a>
     {% endif %}

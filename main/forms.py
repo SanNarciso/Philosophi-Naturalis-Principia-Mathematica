@@ -55,9 +55,11 @@ class TaskForm(ModelForm):
         model = Task
         fields = ['title', 'task']
         widgets = {
-            'title': TextInput(attrs={
+            'title': Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите название',
+                'rows': 2,
+                'cols': 25,
             }),
             'task': Textarea(attrs={
                 'class': 'form-control',
