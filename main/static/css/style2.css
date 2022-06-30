@@ -296,9 +296,13 @@ a {
 .question_list {
     background-color: #FFFFFF;
     width: 100%;
-    border: 3px solid darkgrey;
+    border: 5px solid darkgrey;
     margin-bottom: 1%;
     text-align: left;
+}
+
+.question_list:hover {
+    background-color: #fdf9ec;
 }
 
 .question_title {
