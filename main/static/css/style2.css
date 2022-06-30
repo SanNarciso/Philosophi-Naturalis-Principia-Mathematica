@@ -9,6 +9,31 @@ body {
     color: black;
 }
 
+.author {
+    color: #051eee;
+    font-weight: bold;
+}
+
+.author_text {
+    font-weight: bold;
+    color: black;
+}
+
+.comment_count {
+    color:#051eee;
+    font-weight: bold;
+}
+
+.publish_date {
+    color: #812390;
+    font-weight: bold;
+}
+
+.comment_rule {
+    color: #bf3131;
+    font-weight: bold;
+}
+
 .logo_img {
     width: 2%;
     height: 2%;
@@ -81,8 +106,12 @@ body {
 
 .user {
     margin-left: 1%;
-    color: #871a1a;
-    border: 3px solid #330085;
+    color: black;
+    border: 1px solid black;
+}
+
+.user_base {
+    color: #0c0cde;
 }
 
 .menu {
